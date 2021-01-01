@@ -2,7 +2,7 @@ package com.club.eliteclub.service;
 
 import com.club.eliteclub.dao.EliteClubRepository;
 import com.club.eliteclub.entity.EliteClub;
-import com.club.eliteclub.model.Club;
+import com.club.eliteclub.model.ClubDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +19,8 @@ public class EliteClubService {
         this.eliteClubRepository = eliteClubRepository;
     }
 
-    public List<Club> getAll() {
-        return eliteClubRepository.findAll().stream().map(c -> new Club(c.getClubName())).collect(Collectors.toList());
+    public List<ClubDTO> getAll() {
+        return eliteClubRepository.findAll().stream().map(c -> new ClubDTO(c.getClubName())).collect(Collectors.toList());
     }
 
     public void addClub(String... clubNames) {
