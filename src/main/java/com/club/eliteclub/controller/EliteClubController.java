@@ -1,7 +1,7 @@
 package com.club.eliteclub.controller;
 
 import com.club.eliteclub.model.ClubDTO;
-import com.club.eliteclub.service.EliteClubService;
+import com.club.eliteclub.service.EliteClubServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,15 +13,15 @@ import java.util.List;
 public class EliteClubController {
 
 
-    private EliteClubService eliteClubService;
+    private EliteClubServiceImpl eliteClubServiceImpl;
 
     @Autowired
-    public void setEliteClubService(EliteClubService eliteClubService) {
-        this.eliteClubService = eliteClubService;
+    public void setEliteClubService(EliteClubServiceImpl eliteClubServiceImpl) {
+        this.eliteClubServiceImpl = eliteClubServiceImpl;
     }
 
     @GetMapping(path = "/clubs", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ClubDTO> clubs() {
-        return eliteClubService.getAll();
+        return eliteClubServiceImpl.getAll();
     }
 }

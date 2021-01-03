@@ -12,4 +12,11 @@ public class ClubDTO implements Serializable {
     public String getClubName() {
         return clubName;
     }
+
+    @Override
+    public String toString() {
+        return "ClubDTO{" +
+                "clubName='" + clubName + '\'' +
+                '}';
+    }
 }
