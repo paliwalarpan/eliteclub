@@ -1,11 +1,12 @@
 package com.club.eliteclub.controller;
 
 import com.club.eliteclub.model.ClubDTO;
-import com.club.eliteclub.service.EliteClubServiceImpl;
+import com.club.eliteclub.service.EliteClubService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,15 +14,42 @@ import java.util.List;
 public class EliteClubController {
 
 
-    private EliteClubServiceImpl eliteClubServiceImpl;
+    private EliteClubService eliteClubService;
 
     @Autowired
-    public void setEliteClubService(EliteClubServiceImpl eliteClubServiceImpl) {
-        this.eliteClubServiceImpl = eliteClubServiceImpl;
+    public void setEliteClubService(EliteClubService eliteClubService) {
+        this.eliteClubService = eliteClubService;
     }
 
-    @GetMapping(path = "/clubs", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/club", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ClubDTO> clubs() {
-        return eliteClubServiceImpl.getAll();
+        return eliteClubService.getAll();
+    }
+
+    @PostMapping(path = "/club", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity createNewClub(@RequestBody ClubDTO clubDTO) {
+        eliteClubService.addClub(clubDTO.getClubName());
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+    }
+
+    @GetMapping(path = "/club/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ClubDTO> searchClub(@RequestParam String clubName) {
+        return eliteClubService.searchClub(clubName);
+    }
+
+    @GetMapping(path = "/club/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ClubDTO clubWithId(@PathVariable long id) {
+        return eliteClubService.getByID(id);
+    }
+
+
+    @DeleteMapping(path = "/club/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteClub(@PathVariable long id) {
+        eliteClubService.deleteClub(id);
+    }
+
+    @PutMapping(path = "/club/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ClubDTO updateClub(@PathVariable long id, @RequestBody ClubDTO clubDTO) {
+        return eliteClubService.updateClub(id, clubDTO);
     }
 }

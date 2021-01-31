@@ -11,4 +11,12 @@ public interface EliteClubService {
     List<ClubDTO> searchClub(String searchTerm);
 
     void addClub(String... clubNames);
+
+    ClubDTO getByID(long clubId);
+
+    void deleteClub(long clubId);
+
+    ClubDTO updateClub(long clubId, ClubDTO updatedClub);
+
+
 }

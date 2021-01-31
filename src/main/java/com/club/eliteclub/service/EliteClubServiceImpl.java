@@ -45,4 +45,23 @@ public class EliteClubServiceImpl implements EliteClubService {
             eliteClubRepository.save(eliteClub);
         }
     }
+
+    @Override
+    public ClubDTO getByID(long clubId) {
+        return new ClubDTO(eliteClubRepository.getOne(clubId).getClubName());
+    }
+
+    @Override
+    public void deleteClub(long clubId) {
+        eliteClubRepository.deleteById(clubId);
+    }
+
+    @Override
+    public ClubDTO updateClub(long clubId, ClubDTO updatedClub) {
+        EliteClub eliteClub = new EliteClub();
+        eliteClub.setId(clubId);
+        eliteClub.setClubName(updatedClub.getClubName());
+        final EliteClub saved = eliteClubRepository.save(eliteClub);
+        return new ClubDTO(saved.getClubName());
+    }
 }

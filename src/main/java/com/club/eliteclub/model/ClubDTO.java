@@ -1,11 +1,15 @@
 package com.club.eliteclub.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 public class ClubDTO implements Serializable {
     private final String clubName;
 
-    public ClubDTO(String clubName) {
+    @JsonCreator
+    public ClubDTO(@JsonProperty("clubName") String clubName) {
         this.clubName = clubName;
     }
 
