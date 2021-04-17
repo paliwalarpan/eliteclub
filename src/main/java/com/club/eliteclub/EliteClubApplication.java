@@ -6,12 +6,11 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-public class EliteClubApplication implements ApplicationRunner {
-
-    @Autowired
-    private EliteClubService eliteClubService;
+@Import(SwaggerConfig.class)
+public class EliteClubApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EliteClubApplication.class, args);
