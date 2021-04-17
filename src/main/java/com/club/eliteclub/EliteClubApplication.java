@@ -18,7 +18,6 @@ import java.util.List;
 public class EliteClubApplication implements ApplicationRunner {
     private static final Logger LOG = LoggerFactory.getLogger(EliteClubApplication.class);
 
-
     @Autowired
     private EliteClubService eliteClubService;
 
@@ -28,8 +27,7 @@ public class EliteClubApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        eliteClubService.addClub("Billionaire", "Environmentalist", "Pocker");
-
+        eliteClubService.addClub("Billionaire", "Environmentalist", "Poker");
         List<ClubDTO> clubs = eliteClubService.searchClub("Bi");
         LOG.info("Search Result : {}", clubs);
     }
