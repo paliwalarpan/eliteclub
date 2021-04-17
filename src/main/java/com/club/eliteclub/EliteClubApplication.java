@@ -21,6 +21,6 @@ public class EliteClubApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        eliteClubService.addClub("Billionaire", "Environmentalist", "Pocker");
+        eliteClubService.addClub("Billionaire", "Environmentalist", "Poker");
     }
 }
