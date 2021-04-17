@@ -10,14 +10,17 @@ import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 @Import(SwaggerConfig.class)
-public class EliteClubApplication {
+public class EliteClubApplication implements ApplicationRunner {
+
+    @Autowired
+    private EliteClubService eliteClubService;
 
     public static void main(String[] args) {
         SpringApplication.run(EliteClubApplication.class, args);
     }
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         eliteClubService.addClub("Billionaire", "Environmentalist", "Pocker");
     }
 }
